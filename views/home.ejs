@@ -1,11 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Api</title>
+    <link rel="stylesheet" href="/style.css">
+    <title>I'm Bored Api</title>
 </head>
+
 <body>
-    <h1>Server Side Api requests</h1>
+    <div class="main-container">
+    <div class="container">
+        <h1>Let's find something for you to do</h1>
+        <form action="/activity" method="post">
+            <label for="activity">Choose activity type:</label>
+            <select name="activity" id="activityList">
+                <option value="">Random Type</option>
+                <option value="education">Education</option>
+                <option value="charity">Charity</option>
+                <option value="recreational">Recreational</option>
+                <option value="relaxation">Relaxation</option>
+                <option value="busyWork">Busy work</option>
+                <option value="social">Social</option>
+                <option value="diy">DIY</option>
+                <option value="music">Music</option>
+            </select>
+            <label for="noOfPeople">Any Number of people:</label>
+            <select name="noOfPeople" id="noOfPeople">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+            <input type="submit" value="GO">
+        </form>
+        <p><%= locals.error %></p>
+    </div>
+    <div class="card">
+        <p class="activity"><%= locals.data.activity %></p>
+    </div>
+    </div>
 </body>
+
 </html>

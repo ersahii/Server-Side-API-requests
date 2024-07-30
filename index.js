@@ -21,13 +21,14 @@ app.post("/" , async (req , res)=>{
         const type = req.body.type;
         const participants = req.body.participants;
         console.log(type , participants);
-        // const response = await axios.get(`https://bored-api.appbrewery.com/filter?type=${type}&participants=${participants}`);
-        // const result = response.data;
-        // res.render("home2.ejs",{ data : result} );
-        // console.log(response);
+        const response = await axios.get(`https://bored-api.appbrewery.com/filter?type=${type}&participants=${participants}`);
+        const result = response.data;
+        res.render("home2.ejs",{ data : result[Math.floor(Math.random() * result.length)]} );
+        console.log(response);
     }
     catch(error){
-        console.log(error);
+        console.error("failed to make request:" , error.message);
+        res.render("home.ejs" , {error: "No activities that match your criteria."});
     }
 })
 app.listen(port, ()=>{

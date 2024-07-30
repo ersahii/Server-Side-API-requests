@@ -8,7 +8,6 @@ app.get('/', async(req , res)=>{
     try{
         const response = await axios.get("https://bored-api.appbrewery.com/random");
         const result = response.data;
-        // console.log(result)
         res.render("home.ejs" , {data : result});
     }
     catch(error){
@@ -16,9 +15,20 @@ app.get('/', async(req , res)=>{
         res.render("home.ejs", {error : error.message  } )
     }
 })
-app.post("/activity" , (req , res)=>{
-    console.log(req.body["activity"] , req.body["noOfPeople"]);
-    res.send("Hello")
+app.post("/" , async (req , res)=>{
+    try{
+        console.log(req.body);
+        const type = req.body.type;
+        const participants = req.body.participants;
+        console.log(type , participants);
+        // const response = await axios.get(`https://bored-api.appbrewery.com/filter?type=${type}&participants=${participants}`);
+        // const result = response.data;
+        // res.render("home2.ejs",{ data : result} );
+        // console.log(response);
+    }
+    catch(error){
+        console.log(error);
+    }
 })
 app.listen(port, ()=>{
     console.log(`Server Started at port ${port}`);
